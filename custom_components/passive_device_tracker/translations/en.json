@@ -1,0 +1,60 @@
+{
+  "title": "Passive Device Tracker",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Add Passive Device Tracker",
+        "description": "Choose a device name and the interfaces to passively monitor for home presence.",
+        "data": {
+          "name": "Device Name",
+          "interfaces": "Interfaces"
+        }
+      },
+      "configure": {
+        "title": "Configure Interfaces",
+        "description": "Provide the network address and/or MAC address. For dynamic DHCP, a MAC address will automatically resolve the current IP.",
+        "data": {
+          "lan_ip": "LAN IP / Hostname",
+          "lan_mac": "LAN MAC Address (DHCP)",
+          "wlan_ip": "WLAN IP / Hostname",
+          "wlan_mac": "WLAN MAC Address (DHCP)",
+          "bluetooth_mac": "Bluetooth MAC Address",
+          "consider_home": "Consider Home Timeout (seconds)",
+          "ping_interval": "Ping Interval (seconds)"
+        }
+      }
+    },
+    "error": {
+      "no_interfaces_selected": "Select at least one interface.",
+      "missing_lan_credentials": "Provide at least a LAN IP or LAN MAC address.",
+      "missing_wlan_credentials": "Provide at least a WLAN IP or WLAN MAC address.",
+      "invalid_mac": "Invalid MAC address format (e.g. AA:BB:CC:DD:EE:FF).",
+      "already_configured": "This device is already configured."
+    },
+    "abort": {
+      "already_configured": "This device is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Device Tracker Options",
+        "description": "Update network addresses, MACs, or timeout intervals for this device.",
+        "data": {
+          "lan_ip": "LAN IP / Hostname",
+          "lan_mac": "LAN MAC Address (DHCP)",
+          "wlan_ip": "WLAN IP / Hostname",
+          "wlan_mac": "WLAN MAC Address (DHCP)",
+          "bluetooth_mac": "Bluetooth MAC Address",
+          "consider_home": "Consider Home Timeout (seconds)",
+          "ping_interval": "Ping Interval (seconds)"
+        }
+      }
+    },
+    "error": {
+      "missing_lan_credentials": "Provide at least a LAN IP or LAN MAC address.",
+      "missing_wlan_credentials": "Provide at least a WLAN IP or WLAN MAC address.",
+      "invalid_mac": "Invalid MAC address format (e.g. AA:BB:CC:DD:EE:FF)."
+    }
+  }
+}

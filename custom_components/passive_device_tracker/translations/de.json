@@ -1,0 +1,60 @@
+{
+  "title": "Passiver Geräte-Tracker",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Passiven Geräte-Tracker hinzufügen",
+        "description": "Wähle einen Gerätenamen und die Schnittstellen, die passiv auf Anwesenheit überwacht werden sollen.",
+        "data": {
+          "name": "Gerätename",
+          "interfaces": "Schnittstellen"
+        }
+      },
+      "configure": {
+        "title": "Schnittstellen konfigurieren",
+        "description": "Hinterlege IP-Adresse und/oder MAC-Adresse. Bei dynamischem DHCP löst eine MAC-Adresse die aktuelle IP automatisch auf.",
+        "data": {
+          "lan_ip": "LAN IP-Adresse / Hostname",
+          "lan_mac": "LAN MAC-Adresse (für DHCP)",
+          "wlan_ip": "WLAN IP-Adresse / Hostname",
+          "wlan_mac": "WLAN MAC-Adresse (für DHCP)",
+          "bluetooth_mac": "Bluetooth MAC-Adresse",
+          "consider_home": "Entprellzeit / Consider Home (Sekunden)",
+          "ping_interval": "Ping-Intervall (Sekunden)"
+        }
+      }
+    },
+    "error": {
+      "no_interfaces_selected": "Bitte mindestens eine Schnittstelle auswählen.",
+      "missing_lan_credentials": "Bitte mindestens LAN-IP oder LAN-MAC angeben.",
+      "missing_wlan_credentials": "Bitte mindestens WLAN-IP oder WLAN-MAC angeben.",
+      "invalid_mac": "Ungültiges MAC-Adressformat (z. B. AA:BB:CC:DD:EE:FF).",
+      "already_configured": "Dieses Gerät ist bereits konfiguriert."
+    },
+    "abort": {
+      "already_configured": "Dieses Gerät ist bereits konfiguriert."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Geräte-Tracker Optionen",
+        "description": "Netzwerkadressen, MACs oder Überwachungsintervalle für dieses Gerät anpassen.",
+        "data": {
+          "lan_ip": "LAN IP-Adresse / Hostname",
+          "lan_mac": "LAN MAC-Adresse (für DHCP)",
+          "wlan_ip": "WLAN IP-Adresse / Hostname",
+          "wlan_mac": "WLAN MAC-Adresse (für DHCP)",
+          "bluetooth_mac": "Bluetooth MAC-Adresse",
+          "consider_home": "Entprellzeit / Consider Home (Sekunden)",
+          "ping_interval": "Ping-Intervall (Sekunden)"
+        }
+      }
+    },
+    "error": {
+      "missing_lan_credentials": "Bitte mindestens LAN-IP oder LAN-MAC angeben.",
+      "missing_wlan_credentials": "Bitte mindestens WLAN-IP oder WLAN-MAC angeben.",
+      "invalid_mac": "Ungültiges MAC-Adressformat (z. B. AA:BB:CC:DD:EE:FF)."
+    }
+  }
+}

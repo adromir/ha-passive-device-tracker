@@ -1,0 +1,60 @@
+{
+  "title": "Pelacak Perangkat Pasif",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Tambah Pelacak Perangkat Pasif",
+        "description": "Pilih nama perangkat dan antarmuka yang akan dipantau secara pasif untuk kehadiran di rumah.",
+        "data": {
+          "name": "Nama Perangkat",
+          "interfaces": "Antarmuka"
+        }
+      },
+      "configure": {
+        "title": "Konfigurasi Antarmuka",
+        "description": "Masukkan alamat IP dan/atau alamat MAC. Untuk DHCP dinamis, alamat MAC akan menyelesaikan IP terkini secara otomatis.",
+        "data": {
+          "lan_ip": "IP LAN / Hostname",
+          "lan_mac": "Alamat MAC LAN (DHCP)",
+          "wlan_ip": "IP WLAN / Hostname",
+          "wlan_mac": "Alamat MAC WLAN (DHCP)",
+          "bluetooth_mac": "Alamat MAC Bluetooth",
+          "consider_home": "Batas Waktu Consider Home (detik)",
+          "ping_interval": "Interval Ping (detik)"
+        }
+      }
+    },
+    "error": {
+      "no_interfaces_selected": "Pilih setidaknya satu antarmuka.",
+      "missing_lan_credentials": "Harap berikan setidaknya IP LAN atau MAC LAN.",
+      "missing_wlan_credentials": "Harap berikan setidaknya IP WLAN atau MAC WLAN.",
+      "invalid_mac": "Format alamat MAC tidak valid (mis. AA:BB:CC:DD:EE:FF).",
+      "already_configured": "Perangkat ini sudah dikonfigurasi."
+    },
+    "abort": {
+      "already_configured": "Perangkat ini sudah dikonfigurasi."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opsi Pelacak Perangkat",
+        "description": "Perbarui alamat jaringan, MAC, atau interval batas waktu untuk perangkat ini.",
+        "data": {
+          "lan_ip": "IP LAN / Hostname",
+          "lan_mac": "Alamat MAC LAN (DHCP)",
+          "wlan_ip": "IP WLAN / Hostname",
+          "wlan_mac": "Alamat MAC WLAN (DHCP)",
+          "bluetooth_mac": "Alamat MAC Bluetooth",
+          "consider_home": "Batas Waktu Consider Home (detik)",
+          "ping_interval": "Interval Ping (detik)"
+        }
+      }
+    },
+    "error": {
+      "missing_lan_credentials": "Harap berikan setidaknya IP LAN atau MAC LAN.",
+      "missing_wlan_credentials": "Harap berikan setidaknya IP WLAN atau MAC WLAN.",
+      "invalid_mac": "Format alamat MAC tidak valid (mis. AA:BB:CC:DD:EE:FF)."
+    }
+  }
+}
