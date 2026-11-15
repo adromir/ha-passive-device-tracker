@@ -8,10 +8,21 @@
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=adromir&repository=ha-passive-device-tracker&category=integration)
 
 <p align="center">
-  <img src="custom_components/passive_device_tracker/brand/logo.png" alt="Passive Device Tracker Logo" width="512">
+  <img src="https://raw.githubusercontent.com/adromir/ha-passive-device-tracker/main/logo.png" alt="Passive Device Tracker Logo" width="512">
 </p>
 
 A lightweight, high-performance, and privacy-respecting Home Assistant device integration for multi-interface presence tracking. Developed in collaboration with **Omni Consumer Products (OCP)**.
+
+---
+
+## 📸 Screenshots
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/adromir/ha-passive-device-tracker/main/Screenshots/passive-device-tracker-config.png" alt="Passive Device Tracker Configuration Flow" width="800">
+</p>
+<p align="center">
+  <em>Configuration dialog: easily register devices with multi-interface tracking across LAN, Wi-Fi roaming, and passive Bluetooth LE advertisement listeners.</em>
+</p>
 
 ---
 
