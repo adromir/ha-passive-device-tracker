@@ -1,70 +1,9 @@
 """Tests for config_flow."""
 
-import sys
-import types
-from typing import Any
 import unittest
 from unittest.mock import AsyncMock, MagicMock, patch
 
-
-def _install_ha_stubs() -> None:
-    if "homeassistant" in sys.modules:
-        return
-
-    ha_mod = types.ModuleType("homeassistant")
-    core_mod = types.ModuleType("homeassistant.core")
-    config_entries_mod = types.ModuleType("homeassistant.config_entries")
-    helpers_mod = types.ModuleType("homeassistant.helpers")
-    cv_mod = types.ModuleType("homeassistant.helpers.config_validation")
-    data_entry_flow_mod = types.ModuleType("homeassistant.data_entry_flow")
-
-    def callback(fn):
-        return fn
-
-    class ConfigFlow:
-        def __init_subclass__(cls, **kwargs: Any) -> None:
-            pass
-
-        def async_show_form(self, **kwargs):
-            return {"type": "form", **kwargs}
-
-        def async_create_entry(self, **kwargs):
-            return {"type": "create_entry", **kwargs}
-
-        def async_abort(self, **kwargs):
-            return {"type": "abort", **kwargs}
-
-    class OptionsFlow:
-        def __init_subclass__(cls, **kwargs: Any) -> None:
-            pass
-
-        def async_show_form(self, **kwargs):
-            return {"type": "form", **kwargs}
-
-        def async_create_entry(self, **kwargs):
-            return {"type": "create_entry", **kwargs}
-
-    core_mod.callback = callback
-    config_entries_mod.ConfigFlow = ConfigFlow
-    config_entries_mod.OptionsFlow = OptionsFlow
-    config_entries_mod.ConfigEntry = MagicMock
-    data_entry_flow_mod.FlowResult = dict[str, Any]
-
-    cv_mod.multi_select = lambda options: lambda val: val
-    cv_mod.string = str
-    cv_mod.boolean = bool
-
-    components_mod = types.ModuleType("homeassistant.components")
-    sys.modules["homeassistant.components"] = components_mod
-    sys.modules["homeassistant"] = ha_mod
-    sys.modules["homeassistant.core"] = core_mod
-    sys.modules["homeassistant.config_entries"] = config_entries_mod
-    sys.modules["homeassistant.helpers"] = helpers_mod
-    sys.modules["homeassistant.helpers.config_validation"] = cv_mod
-    sys.modules["homeassistant.data_entry_flow"] = data_entry_flow_mod
-
-
-_install_ha_stubs()
+import tests.ha_mock  # noqa: F401
 
 from custom_components.passive_device_tracker.config_flow import (
     PassiveDeviceTrackerConfigFlow,
@@ -114,9 +53,6 @@ class TestConfigFlow(unittest.IsolatedAsyncioTestCase):
             self.assertEqual(result["type"], "form")
             self.assertEqual(result["step_id"], "user")
 
-            # Check that available interfaces in schema do not include Bluetooth
-            # In result["data_schema"], schema validates options
-            # Submit selection with only LAN
             result2 = await flow.async_step_user({
                 CONF_NAME: "Office Laptop",
                 CONF_INTERFACES: [INTERFACE_LAN],
