@@ -28,18 +28,25 @@ class TestConfigFlow(unittest.IsolatedAsyncioTestCase):
     async def test_bluetooth_capability_detection(self):
         """Test detection of Bluetooth capability."""
         mock_hass = MagicMock()
+        import sys
+        comp_mod = sys.modules.get("homeassistant.components")
+
         # Case 1: bluetooth component not loaded
+        if hasattr(comp_mod, "bluetooth"):
+            delattr(comp_mod, "bluetooth")
         with patch.dict("sys.modules", {"homeassistant.components.bluetooth": None}):
             self.assertFalse(is_bluetooth_available(mock_hass))
 
         # Case 2: bluetooth loaded with scanner_count = 0
         mock_bt = MagicMock()
         mock_bt.async_scanner_count.return_value = 0
+        comp_mod.bluetooth = mock_bt
         with patch.dict("sys.modules", {"homeassistant.components.bluetooth": mock_bt}):
             self.assertFalse(is_bluetooth_available(mock_hass))
 
         # Case 3: bluetooth loaded with scanner_count > 0
         mock_bt.async_scanner_count.return_value = 1
+        comp_mod.bluetooth = mock_bt
         with patch.dict("sys.modules", {"homeassistant.components.bluetooth": mock_bt}):
             self.assertTrue(is_bluetooth_available(mock_hass))
 

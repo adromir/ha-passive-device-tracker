@@ -62,6 +62,7 @@ def install_ha_mocks() -> None:
     cv_mod.boolean = bool
 
     dr_mod = types.ModuleType("homeassistant.helpers.device_registry")
+    dr_mod.DeviceInfo = lambda **kwargs: kwargs
     dr_mod.CONNECTION_NETWORK_MAC = "mac"
     dr_mod.CONNECTION_BLUETOOTH = "bluetooth"
     dr_mod.async_get = MagicMock()
@@ -94,6 +95,19 @@ def install_ha_mocks() -> None:
     sys.modules["homeassistant.helpers"] = helpers_mod
     sys.modules["homeassistant.helpers.config_validation"] = cv_mod
     sys.modules["homeassistant.helpers.device_registry"] = dr_mod
+    ep_mod = types.ModuleType("homeassistant.helpers.entity_platform")
+    ep_mod.AddEntitiesCallback = Any
+
+    util_mod = types.ModuleType("homeassistant.util")
+    util_mod.__path__ = []
+    dt_mod = types.ModuleType("homeassistant.util.dt")
+    from datetime import datetime, timezone
+    dt_mod.utcnow = lambda: datetime.now(timezone.utc)
+    util_mod.dt = dt_mod
+
+    sys.modules["homeassistant.helpers.entity_platform"] = ep_mod
+    sys.modules["homeassistant.util"] = util_mod
+    sys.modules["homeassistant.util.dt"] = dt_mod
     sys.modules["homeassistant.components"] = components_mod
     sys.modules["homeassistant.components.device_tracker"] = device_tracker_mod
 
