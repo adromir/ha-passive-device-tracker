@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 import logging
 from typing import Any, Callable
 
-from homeassistant.components.device_tracker import SourceType, TrackerEntity
+from homeassistant.components.device_tracker import ScannerEntity, SourceType
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.device_registry import DeviceInfo
@@ -65,7 +65,7 @@ async def async_setup_entry(
     async_add_entities([entity])
 
 
-class PassiveDeviceTrackerEntity(TrackerEntity):
+class PassiveDeviceTrackerEntity(ScannerEntity):
     """Passive device tracker entity supporting LAN, WLAN, and Bluetooth LE."""
 
     _attr_has_entity_name = True
@@ -123,6 +123,22 @@ class PassiveDeviceTrackerEntity(TrackerEntity):
             return False
         elapsed = (_utcnow() - self._last_seen).total_seconds()
         return elapsed < self._consider_home
+
+    @property
+    def ip_address(self) -> str | None:
+        """Return the primary IP address of the device."""
+        if self._last_seen_by == INTERFACE_WLAN and self._current_wlan_ip:
+            return self._current_wlan_ip
+        return self._current_lan_ip or self._current_wlan_ip or None
+
+    @property
+    def mac_address(self) -> str | None:
+        """Return the primary MAC address of the device."""
+        if self._last_seen_by == INTERFACE_WLAN and self._wlan_mac:
+            return self._wlan_mac
+        if self._last_seen_by == INTERFACE_BLUETOOTH and self._bt_mac:
+            return self._bt_mac
+        return self._lan_mac or self._wlan_mac or self._bt_mac or None
 
     @property
     def extra_state_attributes(self) -> dict[str, Any]:

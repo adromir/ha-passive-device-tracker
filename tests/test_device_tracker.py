@@ -49,6 +49,7 @@ class TestDeviceTracker(unittest.IsolatedAsyncioTestCase):
     def test_initial_state(self):
         """Test initial disconnected state."""
         self.assertFalse(self.entity.is_connected)
+        self.assertEqual(self.entity.state, "not_home")
         self.assertIsNone(self.entity.extra_state_attributes.get("last_seen_by"))
 
     def test_lan_activity_marks_home(self):
@@ -57,6 +58,7 @@ class TestDeviceTracker(unittest.IsolatedAsyncioTestCase):
         self.entity._update_seen("lan", now, latency=5.2)
 
         self.assertTrue(self.entity.is_connected)
+        self.assertEqual(self.entity.state, "home")
         self.assertEqual(self.entity.source_type, "router")
         attrs = self.entity.extra_state_attributes
         self.assertEqual(attrs["last_seen_by"], "lan")
@@ -94,6 +96,7 @@ class TestDeviceTracker(unittest.IsolatedAsyncioTestCase):
 
         # consider_home is 180s, 200s has elapsed -> should be not connected (not_home)
         self.assertFalse(self.entity.is_connected)
+        self.assertEqual(self.entity.state, "not_home")
 
 
 if __name__ == "__main__":

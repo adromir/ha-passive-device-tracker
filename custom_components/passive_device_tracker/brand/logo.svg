@@ -1,41 +1,50 @@
 <svg width="1024" height="320" viewBox="0 0 1024 320" xmlns="http://www.w3.org/2000/svg">
-  <style>
-    :root {
-      color: var(--primary-color, #03a9f4);
-    }
-  </style>
+  <defs>
+    <linearGradient id="ha-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#18BCF2" />
+      <stop offset="100%" stop-color="#038FC7" />
+    </linearGradient>
+    <linearGradient id="sweep-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#18BCF2" stop-opacity="0.45" />
+      <stop offset="100%" stop-color="#18BCF2" stop-opacity="0.02" />
+    </linearGradient>
+  </defs>
   <!-- Left Icon Mark -->
-  <g transform="translate(16, -16) scale(0.68)">
-    <g fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-<!-- Center Beacon Point -->
-    <circle cx="256" cy="256" r="32" stroke="none" />
-    
-    <!-- Concentric Radar / Signal Pulse Rings -->
-    <path d="M 186 256 A 70 70 0 0 1 326 256" fill="none" stroke-width="24" />
-    <path d="M 186 256 A 70 70 0 0 0 326 256" fill="none" stroke-width="24" stroke-dasharray="8 20" />
-    
-    <path d="M 126 256 A 130 130 0 0 1 386 256" fill="none" stroke-width="24" />
-    <path d="M 126 256 A 130 130 0 0 0 386 256" fill="none" stroke-width="24" stroke-dasharray="10 24" />
-    
-    <path d="M 66 256 A 190 190 0 0 1 446 256" fill="none" stroke-width="24" />
-    <path d="M 66 256 A 190 190 0 0 0 446 256" fill="none" stroke-width="24" stroke-dasharray="12 28" />
-    
-    <!-- Radar Sweep Beam (45 degrees) -->
-    <line x1="256" y1="256" x2="390" y2="122" stroke-width="22" />
-    
-    <!-- Tracked Device Nodes (LAN, WLAN, BLE) -->
-    <circle cx="390" cy="122" r="22" stroke="none" />
-    <circle cx="164" cy="164" r="16" stroke="none" />
-    <circle cx="256" cy="386" r="16" stroke="none" />
+  <g transform="translate(32, 16) scale(1.125)">
+    <g transform="translate(-48.64, -48.64) scale(1.38)">
+      <circle cx="128" cy="128" r="82" fill="none" stroke="url(#ha-grad)" stroke-width="7.5" />
+      <circle cx="128" cy="128" r="61" fill="none" stroke="#18BCF2" stroke-width="2" opacity="0.4" />
+      <line x1="128" y1="48" x2="128" y2="84" stroke="#18BCF2" stroke-width="2.5" opacity="0.6" />
+      <line x1="128" y1="172" x2="128" y2="208" stroke="#18BCF2" stroke-width="2.5" opacity="0.6" />
+      <line x1="48" y1="128" x2="84" y2="128" stroke="#18BCF2" stroke-width="2.5" opacity="0.6" />
+      <path d="M 128 128 L 128 50 A 78 78 0 0 1 183.15 72.85 Z" fill="url(#sweep-grad)" />
+      <line x1="128" y1="128" x2="183.15" y2="72.85" stroke="#18BCF2" stroke-width="3" stroke-linecap="round" />
+      <line x1="164" y1="111" x2="184" y2="128" stroke="#18BCF2" stroke-width="2.5" />
+      <line x1="184" y1="128" x2="164" y2="145" stroke="#18BCF2" stroke-width="2.5" />
+      <line x1="164" y1="111" x2="164" y2="145" stroke="#18BCF2" stroke-width="2" opacity="0.7" />
+      <circle cx="164" cy="111" r="5" fill="#18BCF2" />
+      <circle cx="184" cy="128" r="5" fill="#18BCF2" />
+      <circle cx="164" cy="145" r="5" fill="#18BCF2" />
+      <line x1="97" y1="159" x2="81" y2="175" stroke="#18BCF2" stroke-width="2.5" />
+      <circle cx="81" cy="175" r="5" fill="#18BCF2" />
+      <circle cx="128" cy="128" r="42" fill="#0B3B59" stroke="#18BCF2" stroke-width="6" />
+      <line x1="159" y1="159" x2="181" y2="181" stroke="#18BCF2" stroke-width="9" stroke-linecap="round" />
+      <path d="M 103.3 122.3 A 35 35 0 0 1 152.7 122.3" fill="none" stroke="#18BCF2" stroke-width="3" stroke-linecap="round" opacity="0.85" />
+      <path d="M 109.6 128.6 A 26 26 0 0 1 146.4 128.6" fill="none" stroke="#18BCF2" stroke-width="3" stroke-linecap="round" opacity="0.85" />
+      <path d="M 116.7 135.7 A 16 16 0 0 1 139.3 135.7" fill="none" stroke="#18BCF2" stroke-width="3" stroke-linecap="round" opacity="0.85" />
+      <path d="M 123 142 A 7 7 0 0 1 133 142" fill="none" stroke="#18BCF2" stroke-width="3" stroke-linecap="round" opacity="0.85" />
+      <circle cx="128" cy="155" r="4.2" fill="#18BCF2" opacity="0.95" />
+      <path d="M 118 115 L 139 136 L 128 147 L 128 109 L 139 120 L 118 141" fill="none" stroke="#0B3B59" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M 118 115 L 139 136 L 128 147 L 128 109 L 139 120 L 118 141" fill="none" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
     </g>
   </g>
 
   <!-- Typography on Right -->
-  <g transform="translate(360, 96)">
-    <text x="0" y="52" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="64" font-weight="700" fill="#0f172a" letter-spacing="-1">
-      Passive Device <tspan fill="#03a9f4">Tracker</tspan>
+  <g transform="translate(348, 102)">
+    <text x="0" y="50" font-family="Segoe UI, Arial, sans-serif" font-size="56" font-weight="700" fill="#0f172a" letter-spacing="-0.5">
+      Passive Device <tspan fill="#18BCF2">Tracker</tspan>
     </text>
-    <text x="0" y="102" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="22" font-weight="500" fill="#64748b" letter-spacing="0.5">
+    <text x="2" y="96" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="500" fill="#64748b" letter-spacing="0.5">
       Multi-Interface LAN, WLAN &amp; BLE Discovery
     </text>
   </g>

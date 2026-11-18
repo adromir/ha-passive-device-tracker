@@ -71,17 +71,35 @@ def install_ha_mocks() -> None:
     class SourceType:
         ROUTER = "router"
         BLUETOOTH_LE = "bluetooth_le"
-    class TrackerEntity:
+    class BaseTrackerEntity:
         hass = None
         entity_id = None
         _attr_name = None
         _attr_unique_id = None
         _attr_device_info = None
         _attr_extra_state_attributes = {}
+        async def async_added_to_hass(self):
+            pass
+        async def async_will_remove_from_hass(self):
+            pass
         async def async_write_ha_state(self):
             pass
+
+    class TrackerEntity(BaseTrackerEntity):
+        pass
+
+    class ScannerEntity(BaseTrackerEntity):
+        @property
+        def is_connected(self):
+            return False
+
+        @property
+        def state(self):
+            return "home" if self.is_connected else "not_home"
+
     device_tracker_mod.SourceType = SourceType
     device_tracker_mod.TrackerEntity = TrackerEntity
+    device_tracker_mod.ScannerEntity = ScannerEntity
 
     components_mod = types.ModuleType("homeassistant.components")
     components_mod.__path__ = []
